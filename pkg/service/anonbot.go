@@ -17,13 +17,18 @@ func (a *AnonBot) logActivity(cmd *slack.SlashCommand) {
 
 func (a *AnonBot) HandleCommand(cmd *slack.SlashCommand, w http.ResponseWriter) (err error) {
 	a.logActivity(cmd)
-	defer w.WriteHeader(http.StatusOK)
 	if cmd.Text == "" {
+		msg := "You need to supply text to post..."
+		w.Write([]byte(msg))
 		return
 	}
 	_, _, err = a.Api.PostMessage(cmd.ChannelID, slack.MsgOptionText(cmd.Text, false), slack.MsgOptionAsUser(true))
 	if err != nil {
 		glog.Errorf("Error writing message: %v", err)
+		msg := "Oh no, I could't post that. Is this a private channel or group message? If so, you need to invite me."
+		w.Write([]byte(msg))
+		return
 	}
+	w.WriteHeader(http.StatusOK)
 	return
 }
