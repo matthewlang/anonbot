@@ -12,7 +12,7 @@ type AnonBot struct {
 }
 
 func (a *AnonBot) logActivity(cmd *slack.SlashCommand) {
-	glog.Infof("Message from %v to channel %v: %v", cmd.UserName, cmd.ChannelName, cmd.Text)
+	glog.Infof("Message from %v to channel %v (%v): %v", cmd.UserName, cmd.ChannelName, cmd.ChannelID, cmd.Text)
 }
 
 func (a *AnonBot) HandleCommand(cmd *slack.SlashCommand, w http.ResponseWriter) (err error) {
