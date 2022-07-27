@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/matthewlang/anonbot/pkg/service"
+	"github.com/ml8/anonbot/pkg/service"
 
 	"github.com/golang/glog"
 	"github.com/slack-go/slack"

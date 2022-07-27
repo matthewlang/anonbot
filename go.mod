@@ -1,4 +1,4 @@
-module github.com/matthewlang/anonbot
+module github.com/ml8/anonbot
 
 go 1.15
 
